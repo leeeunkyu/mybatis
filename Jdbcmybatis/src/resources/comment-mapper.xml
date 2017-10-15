@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comments">
+	<resultMap type="comments" id="commentResult">
+		<result property="userId" column="USER_ID"/>
+		<result property="bordIndex" column="BORD_INDEX"/>
+		<result property="content" column="COMMENT_CONTENT"/>
+		<result property="commentHistory" column="COMMENT_HISTORY"/>
+	</resultMap>
+	<insert id="insertcomment" parameterType="comments">
+		INSERT INTO COMMENTS VALUES (#{userId},#{bordIndex},#{content},#{commentHistory})
+	</insert>
+	
+	<select id="selectcomment" parameterType="int" resultMap="commentResult">
+		SELECT * FROM COMMENTS WHERE BORD_INDEX=#{bordIndex}
+	</select> 
+</mapper>
